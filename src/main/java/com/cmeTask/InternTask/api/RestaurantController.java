@@ -4,12 +4,10 @@ import com.cmeTask.InternTask.model.Restaurant;
 import com.cmeTask.InternTask.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RequestMapping("/api/v1/restaurant")
 @RestController
@@ -24,5 +22,10 @@ public class RestaurantController {
     @PostMapping
     public void addRestaurant(@Valid @NonNull @RequestBody Restaurant restaurant){
         restaurantService.addRestaurant(restaurant);
+    }
+
+    @GetMapping(path = "{id}")
+    public List<Restaurant> getRestaurantByType(@PathVariable("id") String type_id){
+        return restaurantService.getrestaurantByType(type_id);
     }
 }

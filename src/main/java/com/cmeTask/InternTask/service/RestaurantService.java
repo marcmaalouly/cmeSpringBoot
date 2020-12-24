@@ -26,4 +26,7 @@ public class RestaurantService {
     public Optional<Restaurant> getRestaurantById(UUID id){
         return restaurantDao.selectRestaurantById(id);
     }
+    public List<Restaurant> getrestaurantByType(String type_id){
+        return restaurantDao.getRestaurantByType(type_id);
+    }
 }
