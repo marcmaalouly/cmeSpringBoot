@@ -46,4 +46,18 @@ public class RestaurantDataAccessService implements RestaurantDao{
     public Optional<Restaurant> selectRestaurantById(UUID id) {
         return Optional.empty();
     }
+
+    @Override
+    public List<Restaurant> getRestaurantByName(String name) {
+        final String sql="SELECT * FROM restaurant WHERE name LIKE ?";
+        return jdbcTemplate.query(sql,new Object[]{"%"+name+"%"},(resultSet, i) -> {
+            UUID id= UUID.fromString(resultSet.getString("id"));
+            String names=resultSet.getString("name");
+            String address=resultSet.getString("address");
+            int avgcost=resultSet.getInt("avgcost");
+            int phonenumber=resultSet.getInt("phonenumber");
+            String typeid=resultSet.getString("type_id");
+            return new Restaurant(id,names,address,avgcost,phonenumber,typeid);
+        });
+    }
 }

@@ -29,4 +29,7 @@ public class RestaurantService {
     public List<Restaurant> getrestaurantByType(String type_id){
         return restaurantDao.getRestaurantByType(type_id);
     }
+    public List<Restaurant> getRestaurantByName(String name){
+        return restaurantDao.getRestaurantByName(name);
+    }
 }

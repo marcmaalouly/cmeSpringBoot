@@ -2,6 +2,7 @@ package com.cmeTask.InternTask.service;
 
 import com.cmeTask.InternTask.dao.VisitDao;
 import com.cmeTask.InternTask.model.Visit;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 public class VisitService {
     private final VisitDao visitDao;
 
-    public VisitService(VisitDao visitDao) {
+    public VisitService(@Qualifier("postgresVisit") VisitDao visitDao) {
         this.visitDao = visitDao;
     }
     public int addVisit(Visit visit){

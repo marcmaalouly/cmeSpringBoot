@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("/api/v1/restaurant")
 @RestController
@@ -27,5 +28,9 @@ public class RestaurantController {
     @GetMapping(path = "{id}")
     public List<Restaurant> getRestaurantByType(@PathVariable("id") String type_id){
         return restaurantService.getrestaurantByType(type_id);
+    }
+    @PostMapping(path = "/search")
+    public List<Restaurant> getRestaurantByName(@RequestBody Map<String,String> name){
+        return restaurantService.getRestaurantByName(name.get("name"));
     }
 }
