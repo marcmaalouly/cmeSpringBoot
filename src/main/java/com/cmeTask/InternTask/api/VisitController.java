@@ -11,6 +11,7 @@ import java.util.List;
 
 @RequestMapping("/api/v1/visit")
 @RestController
+@CrossOrigin("*")
 public class VisitController {
     private final VisitService visitService;
 
