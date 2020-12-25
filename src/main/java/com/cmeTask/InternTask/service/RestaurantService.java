@@ -32,4 +32,7 @@ public class RestaurantService {
     public List<Restaurant> getRestaurantByName(String name){
         return restaurantDao.getRestaurantByName(name);
     }
+    public List<Restaurant> getNonVisitedRestaurant(String person_id){
+        return restaurantDao.getNonVisitedRestaurant(person_id);
+    }
 }

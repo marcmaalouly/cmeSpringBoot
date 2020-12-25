@@ -17,4 +17,5 @@ public interface RestaurantDao {
     List<Restaurant> getRestaurantByType(String type_id);
     Optional<Restaurant> selectRestaurantById(UUID id);
     List<Restaurant> getRestaurantByName(String name);
+    List<Restaurant> getNonVisitedRestaurant(String person_id);
 }

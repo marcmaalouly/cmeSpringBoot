@@ -40,4 +40,9 @@ public class RestaurantController {
     public Optional<Restaurant> getRestaurantById(@PathVariable("id") UUID id){
         return restaurantService.getRestaurantById(id);
     }
+
+    @GetMapping(path = "/checkvisit/{id}")
+    public List<Restaurant> getNonVisitedRestaurant(@PathVariable("id") String person_id){
+        return restaurantService.getNonVisitedRestaurant(person_id);
+    }
 }
