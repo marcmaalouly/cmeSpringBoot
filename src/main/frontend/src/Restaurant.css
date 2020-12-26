@@ -1,0 +1,14 @@
+.content-restaurant{
+    margin-top: 10px;
+    width: 200px;
+    height: 120px;
+    background-color: blue;
+    border-radius: 10px;
+    box-shadow: 0px 5px 20px rgb(71, 71, 71);
+    background-color: rgb(92, 250, 255);
+}
+
+.content-restaurant button{
+    border:none;
+}
+  

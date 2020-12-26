@@ -32,9 +32,9 @@ public class RestaurantController {
     public List<Restaurant> getRestaurantByType(@PathVariable("id") String type_id){
         return restaurantService.getrestaurantByType(type_id);
     }
-    @PostMapping(path = "/search")
-    public List<Restaurant> getRestaurantByName(@RequestBody Map<String,String> name){
-        return restaurantService.getRestaurantByName(name.get("name"));
+    @GetMapping(path = "/search/name={name}")
+    public List<Restaurant> getRestaurantByName(@PathVariable("name") String name){
+        return restaurantService.getRestaurantByName(name);
     }
 
     @GetMapping(path = "{id}")

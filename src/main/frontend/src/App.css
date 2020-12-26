@@ -1,7 +1,22 @@
 .App {
   text-align: center;
+}
+
+
+.nav{
+  background-color: rgba(30, 3, 180, 0.849);
+  padding: 10px;
+}
+
+.listRestaurants{
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+
+a{        
+  text-decoration: none;
 }
 
 .App-logo {
@@ -39,8 +54,4 @@
   }
 }
 
-.listRestaurants{
-  height: 120px;
-  width: 200px;
-  background-color: red;
-}
+

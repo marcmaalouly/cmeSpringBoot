@@ -23,11 +23,22 @@ public class TypeDataAccessService implements TypeDao{
 
     @Override
     public List<Type> selectAllType() {
-        return null;
+        final String sql="SELECT * FROM type";
+        return jdbcTemplate.query(sql,(resultSet, i) -> {
+            UUID id=UUID.fromString(resultSet.getString("id"));
+            String type=resultSet.getString("type");
+            return new Type(id,type);
+        });
     }
 
     @Override
     public Optional<Type> selectTypeById(UUID id) {
-        return Optional.empty();
+        final String sql="SELECT * FROM type WHERE id=?";
+        Type type=jdbcTemplate.queryForObject(sql,new Object[]{id},(resultSet, i) -> {
+            UUID ids=UUID.fromString(resultSet.getString("id"));
+            String types= resultSet.getString("type");
+            return new Type(ids,types);
+        });
+        return Optional.ofNullable(type);
     }
 }
