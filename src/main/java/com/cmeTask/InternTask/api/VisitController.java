@@ -1,5 +1,6 @@
 package com.cmeTask.InternTask.api;
 
+import com.cmeTask.InternTask.model.RestVisit;
 import com.cmeTask.InternTask.model.Visit;
 import com.cmeTask.InternTask.service.VisitService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class VisitController {
         visitService.addVisit(visit);
     }
     @GetMapping(path = "{id}")
-    public List<Visit> getVisitUser(@PathVariable("id") String person_id){
+    public List<RestVisit> getVisitUser(@PathVariable("id") String person_id){
         return visitService.getVisitUser(person_id);
     }
 }

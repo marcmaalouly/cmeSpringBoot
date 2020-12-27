@@ -1,6 +1,7 @@
 package com.cmeTask.InternTask.service;
 
 import com.cmeTask.InternTask.dao.VisitDao;
+import com.cmeTask.InternTask.model.RestVisit;
 import com.cmeTask.InternTask.model.Visit;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class VisitService {
     public int addVisit(Visit visit){
         return visitDao.insertVisit(visit);
     }
-    public List<Visit> getVisitUser(String person_id){
+    public List<RestVisit> getVisitUser(String person_id){
         return visitDao.getVisitUser(person_id);
     }
 }

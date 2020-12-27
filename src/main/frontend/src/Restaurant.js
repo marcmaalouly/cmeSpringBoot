@@ -10,6 +10,9 @@ const Restaurant = ({name,address,number,type,price,id,index}) =>{
     const setVisit=e=>{
         var today = new Date(),
         datenow = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        
+        //I hard coded the user id since we only have one user in our case
+
         axios.post("http://localhost:8080/api/v1/visit",{
             person_id: 'e5f3d266-70dd-4b47-85f6-6c8cddce6488',
             restaurant_id: e.target.value,
@@ -43,7 +46,7 @@ const Restaurant = ({name,address,number,type,price,id,index}) =>{
         <div>
             <div className="content-restaurant">
                 <h1><a href="#" onClick={showModel} value={id}>{name}</a></h1>
-                <button onClick={setVisit} value={id}><FontAwesomeIcon icon={faCheckCircle}/></button>
+                <button onClick={setVisit} value={id}>Visit</button>
             </div>
             <Modal show={modal} handleClose={disableModel} name={name} address={address} price={price} number={number} type={typeid}/>
         </div>

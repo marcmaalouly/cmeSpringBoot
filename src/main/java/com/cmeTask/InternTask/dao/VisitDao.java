@@ -1,5 +1,6 @@
 package com.cmeTask.InternTask.dao;
 
+import com.cmeTask.InternTask.model.RestVisit;
 import com.cmeTask.InternTask.model.Visit;
 
 import java.util.List;
@@ -11,5 +12,5 @@ public interface VisitDao {
         UUID id=UUID.randomUUID();
         return insertVisit(id,visit);
     }
-    List<Visit> getVisitUser(String person_id);
+    List<RestVisit> getVisitUser(String person_id);
 }
