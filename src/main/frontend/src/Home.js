@@ -4,12 +4,13 @@ import './App.css';
 import Restaurant from './Restaurant';
 import Pagination from './Pagination';
 
+
 function Home(){
     
   const [loading,setLoading] = useState(false);
   const [search,setSearch] = useState("");
   const [currentPage,setCurrentPage] = useState(1);
-  const [postsPerPage,setPostsPerPage] = useState(3);
+  const [postsPerPage,setPostsPerPage] = useState(2);
   const [restaurants,setRestaurants]=useState([]);
 
   const[url,setUrl]=useState('checkvisit/e5f3d266-70dd-4b47-85f6-6c8cddce6488');
@@ -74,6 +75,8 @@ function Home(){
 
 
   const paginate= pageNumbers => setCurrentPage(pageNumbers);
+
+
   if(loading){
     return(
         <div className="loader"></div>
@@ -87,6 +90,7 @@ function Home(){
             <input type="text" className="search-bar"  value={search} onChange={updateSearch} /> 
             <select onChange={getType}>
                 <option value=''>Type</option>
+                <option value=''>Reset</option>
                 {types.map((types,index)=>{
                     return(
                         <option value={types.id} key={index}>{types.type}</option>

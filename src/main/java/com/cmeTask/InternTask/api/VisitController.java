@@ -28,4 +28,5 @@ public class VisitController {
     public List<RestVisit> getVisitUser(@PathVariable("id") String person_id){
         return visitService.getVisitUser(person_id);
     }
+
 }

@@ -29,8 +29,12 @@ public class RestaurantDataAccessService implements RestaurantDao{
 
     @Override
     public List<Restaurant> getRestaurantByType(String type_id) {
+
+        //I tried SELECT * from restaurant where type_id=? and id not in (SELECT restaurant_id from visit where restaurant_id=?);
+        //But because i was using UUID psql was returning an error that i can't search for a UUID using restaurant_id=...
+
         final String sql="SELECT * FROM restaurant WHERE type_id=?";
-        return jdbcTemplate.query(sql,new Object[]{type_id},(resultSet, i) -> {
+        List<Restaurant> rs= jdbcTemplate.query(sql,new Object[]{type_id},(resultSet, i) -> {
            UUID id= UUID.fromString(resultSet.getString("id"));
            String name=resultSet.getString("name");
            String address=resultSet.getString("address");
@@ -39,6 +43,33 @@ public class RestaurantDataAccessService implements RestaurantDao{
            String typeid=resultSet.getString("type_id");
            return new Restaurant(id,name,address,avgcost,phonenumber,typeid);
         });
+        final String sql2="select * from visit where restaurant_id=?";
+
+        List<Restaurant> unVisitedRestaurant= new ArrayList<>(rs);
+
+        for( Restaurant r : rs){
+            String ids= String.valueOf(r.getId());
+
+            List<Visit> v=jdbcTemplate.query(sql2,new Object[]{ids},(resultSet, i) -> {
+                UUID id= UUID.fromString(resultSet.getString("id"));
+                String restaurant_id=resultSet.getString("restaurant_id");
+                String person_ids=resultSet.getString("person_id");
+                Date date=resultSet.getDate("date");
+                return new Visit(id,person_ids,restaurant_id,date);
+            });
+
+            for(Visit visit : v){
+                String vs= visit.getRestaurant_id();
+                if(vs.equals(ids)){
+                    unVisitedRestaurant.remove(r);
+                }
+            }
+
+        }
+        if(rs.isEmpty()){
+            return null;
+        }
+        return unVisitedRestaurant;
     }
 
     @Override
